@@ -1,0 +1,4 @@
+jittor
+opencv-python
+pillow
+tensorboardX
