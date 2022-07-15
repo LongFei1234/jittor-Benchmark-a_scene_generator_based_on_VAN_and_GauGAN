@@ -1,0 +1,1 @@
+python test.py --input_path ./data/val/labels

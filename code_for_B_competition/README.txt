@@ -1,0 +1,17 @@
+运行环境：
+请务必在linux系统上运行，否则jittor框架会出现多训练进程的问题！
+需要环境联网，目的是可以下载jittor.models中的预训练模型。这一步骤可直接运行train.py自动下载
+
+适配环境参数修改：
+不建议修改代码部分，可能会导致莫名其妙的内存泄漏
+batch_size可以在train.py与test.py中调整，也可以作为命令行参数输入
+default认为运行在24GB显存上，batch_size为4
+不同的batch_size似乎会对模型的效果产生影响，但尚没有实验过真正的影响关系
+例如batch_size为3或者更低时似乎效果不好，且据称batch_size为2的幂次且大于2效果会更好
+
+关于checkpoints：
+注意每一个epoch都会保存一组中间模型，在./checkpoints中，每500batch更新一次，方便断点重训
+但是断点重训会使模型效果大受影响（考虑到Adam需要历史梯度信息）
+每组模型由discriminator，generator和encoder构成
+这三个模型加起来约0.5G，如果储存200个epoch所有的模型总共需要约100G空间；所以可酌情删除中间模型
+train.py的最后会保存三组模型，作为评判使用的模型

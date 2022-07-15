@@ -1,0 +1,1 @@
+python train.py --input_path ./data/train
